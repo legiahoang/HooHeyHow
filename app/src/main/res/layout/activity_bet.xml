@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_bet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="com.example.hoanglg.hooheyhow.BetActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:titleTextColor="@android:color/white"
+        app:titleTextColor="@android:color/white"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/title_name"
+            android:textColor="@android:color/white"
+            />
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:id="@+id/shakeButton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="49dp"
+        android:fontFamily="casual"
+        android:text="Shake"
+        android:textSize="24sp"
+        android:typeface="serif"/>
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/mResultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/shakeButton"
+        android:layout_alignEnd="@+id/shakeButton"
+        android:layout_alignLeft="@+id/shakeButton"
+        android:layout_alignRight="@+id/shakeButton"
+        android:layout_alignStart="@+id/shakeButton"
+        android:layout_marginBottom="23dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Results"
+        android:textSize="36sp"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/mImageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/mResultTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="87dp"
+        app:srcCompat="@drawable/blank"/>
+
+    <ImageView
+        android:id="@+id/mImageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="57dp"
+        android:layout_toLeftOf="@+id/mImageView3"
+        android:layout_toStartOf="@+id/mImageView3"
+        app:srcCompat="@drawable/blank"/>
+
+    <ImageView
+        android:id="@+id/mImageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/mImageView1"
+        android:layout_toEndOf="@+id/mImageView3"
+        android:layout_toRightOf="@+id/mImageView3"
+        app:srcCompat="@drawable/blank"/>
 </RelativeLayout>

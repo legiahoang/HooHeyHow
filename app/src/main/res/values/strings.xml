@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">HooHeyHow</string>
     <string name="title_name">Hoo Hey How</string>
+    <string name="text_budget">My Budget:</string>
+    <string name="button_reset">Reset</string>
+    <string name="button_bet">Bet</string>
+    <string name="default_amount">30000</string>
+    <string name="keep_playing">Keep Playing</string>
+    <string name="lose_money">Lose: </string>
+    <string name="gain_money">Gain: </string>
+    <string name="break_even">Break-Even: </string>
 </resources>
