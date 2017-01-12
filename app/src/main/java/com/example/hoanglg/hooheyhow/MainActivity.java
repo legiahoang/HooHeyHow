@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
         //set toolbar to act as the ActionBar for this Activity windows
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        initReference();
         initItem();
+        initReference();
     }
 
     public void initReference() {
         mBugetAmountTextView = (TextView) findViewById(R.id.textview_amount);
-        mBugetAmountTextView.setText(String.valueOf(mMoney));
+        mBugetAmountTextView.setText(mMoney+"");
         mResetButton = (Button) findViewById(R.id.reset_button);
         mResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), BetActivity.class);
                 Gson gson = new Gson();
                 String jsonTopItem = gson.toJson(mTopItems);
-                intent.putExtra(Constants.list_item,jsonTopItem);
-//                Log.e("moneyeeeeeeeee", mBugetAmountTextView.getText() + "");
+                Bundle extras = new Bundle();
+                extras.putString(Constants.list_item,jsonTopItem);
+                extras.putString(Constants.total_money, String.valueOf(mMoney));
+                intent.putExtras(extras);
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(intent,1);
                 }
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         mTopItems = new ArrayList<>();
         mTopItems.addAll(TopItem.createTopItemList());
-        mTopItems.add(new TopItem(Constants.total_money, 0, Integer.parseInt( String.valueOf(mBugetAmountTextView.getText()))));
         topItemAdapter = new TopItemAdapter(mTopItems, getApplicationContext());
         recyclerView.setAdapter(topItemAdapter);
     }

@@ -4,7 +4,6 @@ import com.example.hoanglg.hooheyhow.Constants;
 import com.example.hoanglg.hooheyhow.R;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 /**
  * Created by HoangLG on 1/9/2017.
@@ -60,10 +59,8 @@ public class TopItem {
     }
 
     public static void resetValue(ArrayList<TopItem> topItems) {
-        if (topItems.size() == 7) {
-            topItems.remove(topItems.size() - 1);
-        }
-        for (TopItem topItem : topItems) {
+        for (int i = 0;i<topItems.size();i++) {
+            TopItem topItem = topItems.get(i);
             topItem.setAmount(0);
         }
 

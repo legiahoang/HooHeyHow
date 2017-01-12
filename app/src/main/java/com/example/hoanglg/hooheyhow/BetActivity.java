@@ -38,14 +38,18 @@ public class BetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bet);
         initReference();
-        String topItemAsString = getIntent().getStringExtra(Constants.list_item);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String topItemAsString = extras.getString(Constants.list_item);
+        String mAmount = extras.getString(Constants.total_money);
+        mTotalAmount = String.valueOf(mAmount);
+        Log.e("amount", mAmount);
         Gson gson = new Gson();
         Type type = new TypeToken<List<TopItem>>() {
         }.getType();
         final List<TopItem> topItemList = gson.fromJson(topItemAsString, type);
-        mTotalAmount = String.valueOf(topItemList.get(topItemList.size()-1).getAmount());
         for (TopItem topItem : topItemList) {
-            Log.e("Top item data", mTotalAmount + "-" + topItem.getTag() + "-" + topItem.getAmount() + "-" + topItem.getDrawableResource());
+            Log.e("Top item data", mAmount + "-" + topItem.getTag() + "-" + topItem.getAmount() + "-" + topItem.getDrawableResource());
         }
         final Handler handler = new Handler();
         final Runnable runnable = new Runnable() {
@@ -80,7 +84,7 @@ public class BetActivity extends AppCompatActivity {
                     mShakeButton.setVisibility(View.INVISIBLE);
                     handler.removeCallbacks(runnable);
                     handler.post(runnable);
-                }else{
+                } else {
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra(Constants.total_money, mTotalAmount);
                     setResult(Activity.RESULT_OK, resultIntent);
@@ -93,7 +97,7 @@ public class BetActivity extends AppCompatActivity {
 
     public String lostOrGain(int totalAmount, ArrayList<TopItem> topItems) {
         int balance = 0;
-        topItems.remove(topItems.size() - 1);
+        Log.e("Size", topItems.size() + "");
         for (TopItem topItem : topItems) {
             boolean common = false;
             if (topItem.getAmount() > 0) {
@@ -112,12 +116,12 @@ public class BetActivity extends AppCompatActivity {
                 if (!common) {
                     balance -= topItem.getAmount();
                 }
-
             }
         }
         mTotalAmount = String.valueOf(Integer.parseInt(mTotalAmount) + balance);
-        if(balance == 0)
+        if (balance == 0) {
             return getString(R.string.break_even);
+        }
         return balance > 0 ? getString(R.string.gain_money) + balance : getString(R.string.lose_money) + balance;
     }
 
